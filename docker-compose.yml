@@ -1,0 +1,17 @@
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: quarkus-postgres
+    environment:
+      POSTGRES_USER: topicos1
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: quarkus_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data: {}
