@@ -1,3 +1,4 @@
+/*
 package br.com.creatinastore.Cliente;
 
 import java.util.List;
@@ -77,3 +78,4 @@ public class ClienteResource {
         return Response.noContent().build();
     }
 }
+ */
