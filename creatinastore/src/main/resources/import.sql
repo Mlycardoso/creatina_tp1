@@ -1,7 +1,7 @@
 insert into marcas (nome, paisorigem, data_cadastro) values
-('marca1', 'paisOrigem1', NOW()),
-('marca2', 'Origem2', NOW()),
-('marca3', 'pais3', NOW());
+('Integralmédica', 'Brazil', NOW()),
+('Max Titanium', 'USA', NOW()),
+('Growth', 'USA', NOW());
 
 insert into componentes (nome, descricao, concentracao, data_cadastro) values
 ('proteina', 'ficar grandao', '100g', NOW()),
