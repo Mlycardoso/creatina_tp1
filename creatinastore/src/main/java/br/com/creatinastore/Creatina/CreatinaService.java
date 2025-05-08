@@ -80,6 +80,11 @@ public class CreatinaService {
 
     @Transactional
     public boolean delete(Long id) {
+        Creatina creatina = repository.findById(id);
+
+        if(creatina == null)
+            throw new NotFoundException("Creatina com ID " + id + " não encontrado.");
+            
         return repository.deleteById(id);
     }
 }

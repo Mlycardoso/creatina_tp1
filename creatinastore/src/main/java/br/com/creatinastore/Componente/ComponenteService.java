@@ -73,6 +73,11 @@ public class ComponenteService {
 
     @Transactional
     public boolean delete(Long id) {
+        Componente componente = repository.findById(id);
+
+        if (componente == null) 
+            throw new NotFoundException("Componente com ID " + id + " não encontrado.");
+            
         return repository.deleteById(id);
     }
 }

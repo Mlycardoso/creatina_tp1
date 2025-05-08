@@ -88,6 +88,10 @@ public class ClienteService {
 
     @Transactional
     public boolean delete(Long id) {
+        Cliente cliente = repository.findById(id);
+        if (cliente == null) {
+            throw new NotFoundException("Cliente com ID " + id + " não encontrado.");
+        }
         return repository.deleteById(id);
     }
 }
