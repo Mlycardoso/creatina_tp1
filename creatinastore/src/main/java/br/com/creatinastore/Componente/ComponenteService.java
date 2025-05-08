@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.creatinastore.Componente.DTO.ComponenteRequestDTO;
 import br.com.creatinastore.Componente.DTO.ComponenteResponseDTO;
+import br.com.creatinastore.UnidadePeso.UnidadePeso;
 
 @ApplicationScoped
 public class ComponenteService {
@@ -46,7 +47,9 @@ public class ComponenteService {
 
         componente.setNome(dto.nome());
         componente.setDescricao(dto.descricao());
-        componente.setConcentracao(dto.concentracao());
+
+        componente.setQuantidade(dto.quantidade());
+        componente.setConcentracao(UnidadePeso.valueOfId(dto.idUnidadePeso()));
 
         repository.persist(componente);
         return ComponenteResponseDTO.fromEntity(componente);
@@ -61,7 +64,8 @@ public class ComponenteService {
         
         componente.setNome(dtoNovoComponente.nome());
         componente.setDescricao(dtoNovoComponente.descricao());
-        componente.setConcentracao(dtoNovoComponente.concentracao());
+        componente.setQuantidade(dtoNovoComponente.quantidade());
+        componente.setConcentracao(UnidadePeso.valueOfId(dtoNovoComponente.idUnidadePeso()));
         componente.setDataAlteracao(LocalDateTime.now());
         return ComponenteResponseDTO.fromEntity(componente);
         

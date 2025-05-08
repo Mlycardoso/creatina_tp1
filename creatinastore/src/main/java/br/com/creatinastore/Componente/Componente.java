@@ -1,6 +1,11 @@
 package br.com.creatinastore.Componente;
 
+import java.math.BigDecimal;
+
 import br.com.creatinastore.DefaultEntity.DefaultEntity;
+import br.com.creatinastore.UnidadePeso.UnidadePeso;
+import br.com.creatinastore.UnidadePeso.UnidadePesoConverter;
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,9 +15,17 @@ public class Componente extends DefaultEntity{
     @Column(nullable = false)
     private String nome;
 
+    @NotNull
     private String descricao;
 
-    private String concentracao;
+    @NotNull
+    @Column(name = "quantidade")
+    private BigDecimal quantidade;
+
+    @NotNull
+    @Column(name = "concentracao")
+    @Convert(converter = UnidadePesoConverter.class)
+    private UnidadePeso concentracao;
 
     // Getters e Setters
     public String getNome() {
@@ -31,11 +44,20 @@ public class Componente extends DefaultEntity{
         this.descricao = descricao;
     }
 
-    public String getConcentracao() {
+    public BigDecimal getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(BigDecimal quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public UnidadePeso getConcentracao() {
         return concentracao;
     }
 
-    public void setConcentracao(String concentracao) {
+    public void setConcentracao(UnidadePeso concentracao) {
         this.concentracao = concentracao;
     }
+
 }

@@ -16,6 +16,7 @@ public record CreatinaRequestDTO(
     BigDecimal preco,
 
     @NotNull(message = "O valor do peso do produto é obrigatório")
+    @PositiveOrZero
     BigDecimal valorPeso,
 
     @NotNull(message = "O ID da unidade de peso do produto é obrigatório")

@@ -3,7 +3,7 @@ insert into marcas (nome, paisorigem, data_cadastro) values
 ('Max Titanium', 'USA', NOW()),
 ('Growth', 'USA', NOW());
 
-insert into componentes (nome, descricao, concentracao, data_cadastro) values
-('proteina', 'ficar grandao', '100g', NOW()),
-('carbo', 'energia pae','80g', NOW()),
-('seilapprt', 'fff', '20g', NOW());
+insert into componentes (nome, descricao, quantidade, concentracao, data_cadastro) values
+('proteina', 'ficar grandao', 100, 2, NOW()),
+('carbo', 'energia pae', 0.8, 3, NOW()),
+('seilapprt', 'fff', 200, 1, NOW());
