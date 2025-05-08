@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import br.com.creatinastore.Componente.DTO.ComponenteResponseDTO;
 import br.com.creatinastore.Creatina.Creatina;
 import br.com.creatinastore.Marca.DTO.MarcaResponseDTO;
+import br.com.creatinastore.Peso.DTO.PesoResponseDTO;
 
 public record CreatinaResponseDTO(
     Long id,
@@ -15,6 +16,7 @@ public record CreatinaResponseDTO(
     LocalDateTime dataAlteracao,
     String nome,
     BigDecimal preco,
+    PesoResponseDTO peso,
     MarcaResponseDTO marca,
     List<ComponenteResponseDTO> componentes
 ) {
@@ -25,6 +27,7 @@ public record CreatinaResponseDTO(
             creatina.getDataAlteracao(),
             creatina.getNome(),
             creatina.getPreco(),
+            PesoResponseDTO.fromEntity(creatina.getPeso()),
             MarcaResponseDTO.fromEntity(creatina.getMarca()),
             creatina.getComponentes().stream()
                                      .map(ComponenteResponseDTO::fromEntity)

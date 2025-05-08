@@ -62,4 +62,6 @@ public abstract class Produto extends DefaultEntity{
     public void setComponentes(List<Componente> componentes) {
         this.componentes = componentes;
     }
+
+    
 }

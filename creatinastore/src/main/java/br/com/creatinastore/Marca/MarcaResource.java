@@ -6,10 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.List;
-
 import br.com.creatinastore.Marca.DTO.MarcaRequestDTO;
-import br.com.creatinastore.Marca.DTO.MarcaResponseDTO;
 
 @Path("/marcas")
 @Produces(MediaType.APPLICATION_JSON)
@@ -20,14 +17,14 @@ public class MarcaResource {
     MarcaService service;
 
     @GET
-    public List<MarcaResponseDTO> listar() {
-        return service.findAll();
+    public Response listar() {
+        return Response.ok().entity(service.findAll()).build();
     }
 
     @GET
     @Path("/{id}")
-    public MarcaResponseDTO buscar(@PathParam("id") Long id) {
-        return service.findById(id);
+    public Response buscar(@PathParam("id") Long id) {
+        return Response.ok().entity(service.findById(id)).build();
     }
 
     @POST
@@ -38,8 +35,9 @@ public class MarcaResource {
 
     @PUT
     @Path("/{id}")
-    public MarcaResponseDTO atualizar(@PathParam("id") Long id, @Valid MarcaRequestDTO dto) {
-        return service.update(id, dto);
+    public Response atualizar(@PathParam("id") Long id, @Valid MarcaRequestDTO dto) {
+        service.update(id, dto);
+        return Response.noContent().build();
     }
 
     @DELETE

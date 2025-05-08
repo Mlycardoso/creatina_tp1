@@ -11,6 +11,8 @@ import br.com.creatinastore.Componente.ComponenteRepository;
 import br.com.creatinastore.Creatina.DTO.CreatinaRequestDTO;
 import br.com.creatinastore.Creatina.DTO.CreatinaResponseDTO;
 import br.com.creatinastore.Marca.MarcaRepository;
+import br.com.creatinastore.Peso.Peso;
+import br.com.creatinastore.UnidadePeso.UnidadePeso;
 
 @ApplicationScoped
 public class CreatinaService {
@@ -46,6 +48,12 @@ public class CreatinaService {
 
         creatina.setNome(dto.nome());
         creatina.setPreco(dto.preco());
+
+        Peso peso = new Peso();
+        peso.setValor(dto.valorPeso());
+        peso.setUnidade(UnidadePeso.valueOfId(dto.idUnidadePeso()));
+        creatina.setPeso(peso);
+        
         creatina.setMarca(marcaRepository.findById(dto.marcaId()));
         creatina.setComponentes(componenteRepository.list("id in ?1", dto.componentesIds()));
 
