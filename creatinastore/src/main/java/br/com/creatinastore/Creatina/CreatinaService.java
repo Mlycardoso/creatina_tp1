@@ -7,9 +7,11 @@ import jakarta.ws.rs.NotFoundException;
 
 import java.util.List;
 
+import br.com.creatinastore.Categoria.CategoriaRepository;
 import br.com.creatinastore.Componente.ComponenteRepository;
 import br.com.creatinastore.Creatina.DTO.CreatinaRequestDTO;
 import br.com.creatinastore.Creatina.DTO.CreatinaResponseDTO;
+import br.com.creatinastore.Fornecedor.FornecedorRepository;
 import br.com.creatinastore.Marca.MarcaRepository;
 import br.com.creatinastore.Peso.Peso;
 import br.com.creatinastore.UnidadePeso.UnidadePeso;
@@ -22,6 +24,12 @@ public class CreatinaService {
 
     @Inject
     MarcaRepository marcaRepository;
+
+    @Inject
+    CategoriaRepository categoriaRepository;
+
+    @Inject
+    FornecedorRepository fornecedorRepository;
 
     @Inject
     ComponenteRepository componenteRepository;
@@ -55,6 +63,8 @@ public class CreatinaService {
         creatina.setPeso(peso);
         
         creatina.setMarca(marcaRepository.findById(dto.marcaId()));
+        creatina.setCategoria(categoriaRepository.findById(dto.categoriaId()));
+        creatina.setFornecedor(fornecedorRepository.findById(dto.fornecedorId()));
         creatina.setComponentes(componenteRepository.list("id in ?1", dto.componentesIds()));
 
         repository.persist(creatina);
@@ -72,6 +82,9 @@ public class CreatinaService {
             creatina.setNome(dto.nome());
             creatina.setPreco(dto.preco());
             creatina.setMarca(marcaRepository.findById(dto.marcaId()));
+            creatina.setCategoria(categoriaRepository.findById(dto.categoriaId()));
+            creatina.setFornecedor(fornecedorRepository.findById(dto.fornecedorId()));
+
             creatina.setComponentes(componenteRepository.list("id in ?1", dto.componentesIds()));
         }
 

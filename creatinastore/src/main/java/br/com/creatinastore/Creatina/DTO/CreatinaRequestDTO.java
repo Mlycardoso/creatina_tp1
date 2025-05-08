@@ -25,6 +25,12 @@ public record CreatinaRequestDTO(
     @NotNull(message = "O ID da marca é obrigatório")
     Long marcaId,
 
+    @NotNull(message = "O ID da categoria é obrigatório")
+    Long categoriaId,
+
+    @NotNull(message = "O ID do fornecedor é obrigatório")
+    Long fornecedorId,
+
     @NotNull(message = "A lista de componentes é obrigatória")
     List<Long> componentesIds
 ) {}

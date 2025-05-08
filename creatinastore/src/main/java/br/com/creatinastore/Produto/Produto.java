@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.creatinastore.Componente.Componente;
 import br.com.creatinastore.DefaultEntity.DefaultEntity;
+import br.com.creatinastore.Fornecedor.Fornecedor;
 import br.com.creatinastore.Marca.Marca;
 
 @MappedSuperclass
@@ -21,6 +22,10 @@ public abstract class Produto extends DefaultEntity{
     @ManyToOne
     @JoinColumn(name = "marca_id")
     private Marca marca;
+
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
 
     @ManyToMany
     @JoinTable(
@@ -61,6 +66,14 @@ public abstract class Produto extends DefaultEntity{
 
     public void setComponentes(List<Componente> componentes) {
         this.componentes = componentes;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     
