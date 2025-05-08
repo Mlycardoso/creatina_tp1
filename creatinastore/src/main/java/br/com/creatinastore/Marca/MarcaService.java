@@ -66,6 +66,11 @@ public class MarcaService {
 
     @Transactional
     public boolean delete(Long id) {
+        Marca marca = repository.findById(id);
+        
+        if (marca == null)
+            throw new NotFoundException("Marca com ID " + id + " não encontrado.");
+            
         return repository.deleteById(id);
     }
 }
