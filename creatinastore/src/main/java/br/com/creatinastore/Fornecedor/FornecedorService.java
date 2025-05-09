@@ -37,6 +37,7 @@ public class FornecedorService {
         fornecedor.setNome(dto.nome());
         fornecedor.setCnpj(dto.cnpj());
         fornecedor.setTelefone(dto.telefone());
+        fornecedor.setEmail(dto.email());
         repository.persist(fornecedor);
         return FornecedorResponseDTO.fromEntity(fornecedor);
     }
@@ -51,6 +52,7 @@ public class FornecedorService {
         fornecedor.setNome(dto.nome());
         fornecedor.setCnpj(dto.cnpj());
         fornecedor.setTelefone(dto.telefone());
+        fornecedor.setEmail(dto.email());
         
         return FornecedorResponseDTO.fromEntity(fornecedor);
     }

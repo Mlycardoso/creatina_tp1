@@ -9,6 +9,7 @@ public record FornecedorResponseDTO(
     String nome,
     String cnpj,
     String telefone,
+    String email,
     LocalDateTime dataCadastro,
     LocalDateTime dataAlteracao
 ) {
@@ -18,6 +19,7 @@ public record FornecedorResponseDTO(
             fornecedor.getNome(),
             fornecedor.getCnpj(),
             fornecedor.getTelefone(),
+            fornecedor.getEmail(),
             fornecedor.getDataCadastro(),
             fornecedor.getDataAlteracao()
         );

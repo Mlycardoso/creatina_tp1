@@ -1,5 +1,7 @@
 package br.com.creatinastore.Fornecedor.DTO;
 
+import io.smallrye.common.constraint.NotNull;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record FornecedorRequestDTO(
@@ -10,5 +12,9 @@ public record FornecedorRequestDTO(
     @NotBlank(message = "CNPJ é obrigatório") 
     String cnpj,
 
-    String telefone
+    String telefone,
+
+    @NotNull
+    @Email
+    String email
 ) {}
