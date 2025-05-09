@@ -1,8 +1,8 @@
 package br.com.creatinastore;
 
-import org.junit.jupiter.api.*;
+import br.com.creatinastore.Fornecedor.DTO.FornecedorRequestDTO;
 
-import br.com.creatinastore.Marca.DTO.MarcaRequestDTO;
+import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -12,7 +12,7 @@ import io.restassured.http.ContentType;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MarcaResourceTest {
+public class FornecedorResourceTest {
 
     static Long id;
 
@@ -20,29 +20,33 @@ public class MarcaResourceTest {
     @Order(1)
     void testListar() {
         given()
-            .when().get("/marcas")
+            .when().get("/fornecedores")
             .then()
                 .statusCode(200);
     }
 
     @Test
     @Order(2)
-    void testCriarMarca() {
-        MarcaRequestDTO dto = new MarcaRequestDTO(
-            "Marca Teste",
-            "Pais Teste"
+    void testCriarFornecedor() {
+        FornecedorRequestDTO dto = new FornecedorRequestDTO(
+            "Fornecedor Teste",
+            "51999999999",
+            "12345678000199",
+            "teste@fornecedor.com"
         );
 
         id = Long.valueOf(
             given()
                 .contentType(ContentType.JSON)
                 .body(dto)
-                .when().post("/marcas")
+                .when().post("/fornecedores")
                 .then()
                     .statusCode(201)
                     .body("id", notNullValue(),
-                          "nome", is("Marca Teste"),
-                          "paisOrigem", is("Pais Teste"))
+                          "nome", is("Fornecedor Teste"),
+                          "cnpj", is("51999999999"),
+                          "telefone", is("12345678000199"),
+                          "email", is("teste@fornecedor.com"))
                 .extract().path("id").toString()
         );
     }
@@ -51,7 +55,7 @@ public class MarcaResourceTest {
     @Order(3)
     void testBuscarPorId() {
         given()
-            .when().get("/marcas/" + id)
+            .when().get("/fornecedores/" + id)
             .then()
                 .statusCode(200)
                 .body("id", is(id.intValue()));
@@ -60,15 +64,17 @@ public class MarcaResourceTest {
     @Test
     @Order(4)
     void testAtualizar() {
-        MarcaRequestDTO dtoAtualizada = new MarcaRequestDTO(
-            "Marca Atualizada",
-            "Teste Update Pais"
+        FornecedorRequestDTO atualizado = new FornecedorRequestDTO(
+            "Fornecedor Atualizado",
+            "51988888888",
+            "12345678000199",
+            "atualizado@fornecedor.com"
         );
 
         given()
             .contentType(ContentType.JSON)
-            .body(dtoAtualizada)
-            .when().put("/marcas/" + id)
+            .body(atualizado)
+            .when().put("/fornecedores/" + id)
             .then()
                 .statusCode(204);
     }
@@ -77,7 +83,7 @@ public class MarcaResourceTest {
     @Order(5)
     void testDeletar() {
         given()
-            .when().delete("/marcas/" + id)
+            .when().delete("/fornecedores/" + id)
             .then()
                 .statusCode(204);
     }
