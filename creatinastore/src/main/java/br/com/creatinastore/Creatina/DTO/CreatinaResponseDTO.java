@@ -1,6 +1,7 @@
 package br.com.creatinastore.Creatina.DTO;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +23,11 @@ public record CreatinaResponseDTO(
     MarcaResponseDTO marca,
     CategoriaResponseDTO categoria,
     FornecedorResponseDTO fornecedor,
-    List<ComponenteResponseDTO> componentes
+    List<ComponenteResponseDTO> componentes,
+    Long idDisponibilidade,
+    Integer quantidadeEstoque,
+    String lote,
+    LocalDate validade
 ) {
     public static CreatinaResponseDTO fromEntity(Creatina creatina) {
         return new CreatinaResponseDTO(
@@ -37,7 +42,11 @@ public record CreatinaResponseDTO(
             FornecedorResponseDTO.fromEntity(creatina.getFornecedor()),
             creatina.getComponentes().stream()
                                      .map(ComponenteResponseDTO::fromEntity)
-                                     .collect(Collectors.toList())
+                                     .collect(Collectors.toList()),
+            creatina.getDisponibilidade().getId(),
+            creatina.getDisponibilidade().getQuantidadeEstoque(),
+            creatina.getDisponibilidade().getLote(),
+            creatina.getDisponibilidade().getValidade()
         );
     }
 }

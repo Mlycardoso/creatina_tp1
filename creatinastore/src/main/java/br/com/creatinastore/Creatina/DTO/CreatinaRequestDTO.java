@@ -7,6 +7,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.List;
 
+import br.com.creatinastore.Disponibilidade.DTO.DisponibilidadeRequestDTO;
+
 public record CreatinaRequestDTO(
     @NotBlank(message = "O nome do produto é obrigatório")
     String nome,
@@ -32,6 +34,9 @@ public record CreatinaRequestDTO(
     Long fornecedorId,
 
     @NotNull(message = "A lista de componentes é obrigatória")
-    List<Long> componentesIds
+    List<Long> componentesIds,
+
+    @NotNull(message = "A disponiblidade é obrigatória")
+    DisponibilidadeRequestDTO disponibilidade
 ) {}
 

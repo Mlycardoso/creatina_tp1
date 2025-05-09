@@ -1,6 +1,7 @@
 package br.com.creatinastore.Creatina;
 
 import br.com.creatinastore.Categoria.Categoria;
+import br.com.creatinastore.Disponibilidade.Disponibilidade;
 import br.com.creatinastore.Peso.Peso;
 import br.com.creatinastore.Produto.Produto;
 import jakarta.persistence.CascadeType;
@@ -21,6 +22,17 @@ public class Creatina extends Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @OneToOne(mappedBy = "creatina", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Disponibilidade disponibilidade;
+
+    public Disponibilidade getDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
 
     public Categoria getCategoria() {
         return categoria;
